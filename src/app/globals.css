@@ -376,3 +376,74 @@ tbody tr:hover {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+
+/* ---------- Header khi đã đăng nhập ---------- */
+
+.nav {
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.nav-user {
+  padding: 8px 6px;
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.nav-button {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background: var(--surface);
+}
+
+/* ---------- Đăng nhập ---------- */
+
+.auth {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.auth-form input {
+  width: 100%;
+  min-width: 0;
+}
+
+.form-error {
+  margin: 0;
+  color: #b42318;
+  font-size: 14px;
+}
+
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- Bảng quản trị ---------- */
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import './globals.css';
+import { Header } from '@/components/Header';
+import { Providers } from './providers';
 
 export const metadata: Metadata = {
   title: {
@@ -16,25 +17,17 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body>
-        <header className="site-header">
-          <div className="container header-inner">
-            <Link className="brand" href="/">
-              Thư viện khoa CNTT
-            </Link>
-            <nav className="nav" aria-label="Điều hướng chính">
-              <Link href="/">Trang chủ</Link>
-              <Link href="/books">Sách</Link>
-            </nav>
-          </div>
-        </header>
+        <Providers>
+          <Header />
 
-        <main className="container">{children}</main>
+          <main className="container">{children}</main>
 
-        <footer className="site-footer">
-          <div className="container">
-            Thư viện khoa CNTT · Bài thực hành Lập trình Web nâng cao
-          </div>
-        </footer>
+          <footer className="site-footer">
+            <div className="container">
+              Thư viện khoa CNTT · Bài thực hành Lập trình Web nâng cao
+            </div>
+          </footer>
+        </Providers>
       </body>
     </html>
   );
