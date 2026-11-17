@@ -11,7 +11,7 @@ export default defineConfig({
     coverage: {
       include: [
         'src/lib/permissions.ts',
-        'src/lib/loan-schema.ts',
+        'src/lib/loan-validate.ts',
         'src/lib/format.ts',
         'src/components/LoanForm.tsx',
       ],
