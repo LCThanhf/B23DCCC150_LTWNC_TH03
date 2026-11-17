@@ -377,6 +377,11 @@ tbody tr:hover {
   text-transform: uppercase;
 }
 
+/* Nhãn đầu trang (Khu vực thành viên, 403...) cách dòng kẻ header thoáng hơn */
+main > section > .badge:first-child {
+  margin-top: 16px;
+}
+
 /* ---------- Header khi đã đăng nhập ---------- */
 
 .nav {
