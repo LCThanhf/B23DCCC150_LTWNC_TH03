@@ -1,12 +1,20 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { loginAction, type LoginState } from './actions';
 
-const initialState: LoginState = { error: '' };
+const initialState: LoginState = { error: '', redirectTo: '' };
 
 export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
   const [state, formAction, pending] = useActionState(loginAction, initialState);
+
+  // Đăng nhập xong thì tải lại toàn trang để SessionProvider nhận phiên mới,
+  // tránh tình trạng menu vẫn hiện trạng thái cũ cho tới khi refresh.
+  useEffect(() => {
+    if (state.redirectTo) {
+      window.location.assign(state.redirectTo);
+    }
+  }, [state.redirectTo]);
 
   return (
     <form className="panel auth-form" action={formAction}>
@@ -42,7 +50,7 @@ export function LoginForm({ callbackUrl }: { callbackUrl: string }) {
       ) : null}
 
       <button className="btn" type="submit" disabled={pending}>
-        {pending ? 'Đang đăng nhập...' : 'Đăng nhập'}
+        {pending || state.redirectTo ? 'Đang đăng nhập...' : 'Đăng nhập'}
       </button>
     </form>
   );
