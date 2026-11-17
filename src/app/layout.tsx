@@ -21,12 +21,6 @@ export default function RootLayout({
           <Header />
 
           <main className="container">{children}</main>
-
-          <footer className="site-footer">
-            <div className="container">
-              Thư viện khoa CNTT · Bài thực hành Lập trình Web nâng cao
-            </div>
-          </footer>
         </Providers>
       </body>
     </html>
