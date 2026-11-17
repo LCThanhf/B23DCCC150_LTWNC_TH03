@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 import { TERM_LABEL } from '@/lib/format';
 import type { LoanFormState } from '@/lib/loan-validate';
 import type { Book, Term } from '@/types';
@@ -17,6 +17,20 @@ interface LoanFormProps {
 
 export function LoanForm({ books, defaultBookId, action }: LoanFormProps) {
   const [state, formAction, pending] = useActionState(action, initialState);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  // Thông báo thành công tự ẩn sau vài giây; lỗi vẫn giữ nguyên.
+  useEffect(() => {
+    if (!state.ok || !state.message) return;
+
+    const showTimer = setTimeout(() => setShowSuccess(true), 0);
+    const hideTimer = setTimeout(() => setShowSuccess(false), 4000);
+
+    return () => {
+      clearTimeout(showTimer);
+      clearTimeout(hideTimer);
+    };
+  }, [state]);
 
   const { values, errors } = state;
 
@@ -120,7 +134,7 @@ export function LoanForm({ books, defaultBookId, action }: LoanFormProps) {
         {pending ? 'Đang gửi...' : 'Gửi yêu cầu'}
       </button>
 
-      {state.message ? (
+      {state.message && (!state.ok || showSuccess) ? (
         <p className={state.ok ? 'form-success' : 'form-error'} role="status">
           {state.message}
         </p>
